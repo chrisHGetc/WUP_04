@@ -55,6 +55,7 @@ ggplot(thedata, aes(x = DEGREE, y = WORDSUM)) +
     plot.title = element_text(hjust = 0.5, size = 16)
   )
 ```
+
 The analysis of the dataset suggests that there is no overlap between individuals who have completed high school and those who have attended junior college or graduate school. This finding indicates a low likelihood of significant differences in educational background between these groups. Additionally, there is no overlap between individuals who have completed graduate school and those with a high school education, further supporting the notion of distinct educational attainment levels.It is noteworthy that the distinguishing factors in the dataset are limited to individuals with a high school education compared to those who have completed graduate studies. These differences highlight the significance of educational levels achieved, implying that these two categories are the primary drivers of differentiation within the dataset.
 
 
@@ -73,8 +74,11 @@ The analysis of the data indicates that the average scores on the WORDSUM test f
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
-
-
+```{r}
+model1 <- aov(WORDSUM~DEGREE,data=thedata)
+summary.aov(model1)
+```
+The initial analysis reveals a significant difference in educational attainment across all five degrees. However, it is important to note that further testing and analysis are required to delve deeper into the data and obtain a more comprehensive understanding of the observed differences. Additional tests can be conducted to explore the specific nature and magnitude of the disparities between the educational levels. These subsequent analyses will facilitate a more nuanced and comprehensive examination of the data, allowing for a deeper dissection of the observed patterns and relationships.
 
 # Discussion and Conclusion
 

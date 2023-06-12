@@ -11,6 +11,7 @@ output:
 require(knitr)
 require(tidyverse)
 require(tigerstats)
+require(stats)
 thedata<-read.csv(file="GSScsv.csv")
 ```
 ```{r eval=FALSE}
@@ -80,6 +81,42 @@ summary.aov(model1)
 ```
 The initial analysis reveals a significant difference in educational attainment across all five degrees. However, it is important to note that further testing and analysis are required to delve deeper into the data and obtain a more comprehensive understanding of the observed differences. Additional tests can be conducted to explore the specific nature and magnitude of the disparities between the educational levels. These subsequent analyses will facilitate a more nuanced and comprehensive examination of the data, allowing for a deeper dissection of the observed patterns and relationships.
 
+```{r}
+
+model <- aov(WORDSUM ~ DEGREE, data = thedata)
+
+# Conduct post-hoc test (Tukey's HSD)
+posthoc <- TukeyHSD(model)
+
+# Print the results
+print(posthoc)
+
+
+
+```
+When comparing GRADUATE to BACHELOR the mean difference between graduates and individuals with a bachelor's degree is 0.8906926, with a t-value of 2.400971282 and a p-value of 0.4830028. The p-value suggests that the observed difference is not statistically significant.HIGH SCHOOL to BACHELOR: The mean difference between individuals with a high school education and those with a bachelor's degree is -0.9221925. The t-value is 0.135344173, and the p-value is 0.1191431. The p-value does not reach the conventional threshold for statistical significance, indicating that the observed difference is not statistically significan. JUNIOR COLLEGE to BACHELO the mean difference between individuals with a junior college education and those with a bachelor's degree is 0.7121212. The t-value is 2.566564004, and the p-value is 0.8273294. The p-value suggests that the observed difference is not statistically significant.LT HIGH School to BACHELOR the mean difference between individuals with less than a high school education and those with a bachelor's degree is -1.4545455. The t-value is 0.207816855, and the p-value is 0.1169509. The p-value does not reach the conventional threshold for statistical significance, indicating that the observed difference is not statistically significant.
+
+```{r}
+# Assuming you have the "thedata" data frame with "DEGREE" and "WORDSUM" columns
+
+# Load the emmeans package
+library(emmeans)
+
+# Perform one-way ANOVA
+result <- aov(WORDSUM ~ DEGREE, data = thedata)
+
+# Perform Scheffe's post hoc test
+comparison <- emmeans(result, pairwise ~ DEGREE, adjust = "scheffe")
+
+# Print the comparison table
+print(comparison)
+
+```
+
+
+
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+In conclusion it is easier to read a tukey hsd to read the data.The analysis of the provided data reveals no statistically significant differences in mean scores between graduates and individuals with a bachelor's degree, individuals with a high school education and those with a bachelor's degree, individuals with a junior college education and those with a bachelor's degree, as well as individuals with less than a high school education and those with a bachelor's degree. These findings suggest that there is no strong evidence to support significant disparities in educational attainment between these degree categories. Further research is needed to gain a deeper understanding of the relationships and potential causal factors involved. Consideration of contextual factors and exploration of underlying mechanisms is crucial in interpreting these results.

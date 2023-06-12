@@ -55,12 +55,18 @@ ggplot(thedata, aes(x = DEGREE, y = WORDSUM)) +
     plot.title = element_text(hjust = 0.5, size = 16)
   )
 ```
+The analysis of the dataset suggests that there is no overlap between individuals who have completed high school and those who have attended junior college or graduate school. This finding indicates a low likelihood of significant differences in educational background between these groups. Additionally, there is no overlap between individuals who have completed graduate school and those with a high school education, further supporting the notion of distinct educational attainment levels.It is noteworthy that the distinguishing factors in the dataset are limited to individuals with a high school education compared to those who have completed graduate studies. These differences highlight the significance of educational levels achieved, implying that these two categories are the primary drivers of differentiation within the dataset.
+
 
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
+```{r}
+favstats(WORDSUM~DEGREE,data=thedata)
+```
+The analysis of the data indicates that the average scores on the WORDSUM test for graduates were slightly above 10. Notably, there exists a statistically significant difference between the average scores observed in graduate school and junior college. These findings provide evidence that the educational experiences offered by graduate school and junior college are distinct from each other, as reflected by the disparities in average test scores.
 
 
 ## Inferential Results
